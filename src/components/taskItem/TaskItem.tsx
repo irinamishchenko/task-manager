@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { Task } from "../../interfaces/tasksInterfaces";
 import Modal from "../modal/Modal";
-import { Card, CardContent, Typography, Button } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  Select,
+  MenuItem,
+} from "@mui/material";
 
 interface TaskItemProps {
   task: Task;
@@ -27,12 +34,20 @@ const TaskItem = ({ task, onDelete }: TaskItemProps) => {
     <>
       <Card style={cardStyle}>
         <CardContent>
-          <Button variant="outlined" onClick={onDelete}>
-            Delete
-          </Button>
-          <Button variant="outlined" onClick={openModal}>
-            Edit
-          </Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "10px",
+            }}
+          >
+            <Button variant="outlined" onClick={openModal}>
+              Edit
+            </Button>
+            <Button variant="outlined" onClick={onDelete}>
+              Delete
+            </Button>
+          </div>
           <Typography variant="h5" component="h2">
             {title}
           </Typography>
