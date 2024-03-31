@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Task } from "../../interfaces/tasksInterfaces";
+import { useDispatch } from "react-redux";
+import { editTask } from "../../actions/editTask";
+import { Task, TaskStatus } from "../../interfaces/tasksInterfaces";
 import Modal from "../modal/Modal";
 import {
   Card,
@@ -8,6 +10,7 @@ import {
   Button,
   Select,
   MenuItem,
+  SelectChangeEvent,
 } from "@mui/material";
 
 interface TaskItemProps {
@@ -16,13 +19,37 @@ interface TaskItemProps {
 }
 
 const TaskItem = ({ task, onDelete }: TaskItemProps) => {
+  const { id, title, description, status, category, deadline } = task;
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [editedStatus, setEditedStatus] = useState<string>(status);
+
+  const dispatch = useDispatch();
 
   const openModal = () => {
     setIsModalOpen(true);
   };
-  console.log(task);
-  const { id, title, description, status, category, deadline } = task;
+
+  const handleStatusChange = (event: SelectChangeEvent<string>) => {
+    setEditedStatus(event.target.value);
+
+    function assertTaskStatus(value: string): value is TaskStatus {
+      console.log(Object.values(TaskStatus).includes(value as TaskStatus));
+      return Object.values(TaskStatus).includes(value as TaskStatus);
+    }
+
+    if (assertTaskStatus(editedStatus)) {
+      const newTask: Task = {
+        id,
+        title,
+        description,
+        status: editedStatus,
+        category,
+        deadline,
+      };
+      dispatch(editTask(newTask));
+    }
+  };
+
   const cardStyle = {
     background: "#f0f0f0",
     border: "1px solid #ccc",
@@ -54,7 +81,21 @@ const TaskItem = ({ task, onDelete }: TaskItemProps) => {
           <Typography variant="body2" component="p">
             {description}
           </Typography>
-          <Typography color="textSecondary">Status: {status}</Typography>
+          <Select
+            value={editedStatus}
+            onChange={handleStatusChange}
+            sx={{ height: "35px" }}
+          >
+            <MenuItem value={TaskStatus.NOT_STARTED}>
+              {TaskStatus.NOT_STARTED}
+            </MenuItem>
+            <MenuItem value={TaskStatus.IN_PROGRESS}>
+              {TaskStatus.IN_PROGRESS}
+            </MenuItem>
+            <MenuItem value={TaskStatus.COMPLETED}>
+              {TaskStatus.COMPLETED}
+            </MenuItem>
+          </Select>
           <Typography color="textSecondary">Category: {category}</Typography>
           <Typography color="textSecondary">Deadline: {deadline}</Typography>
         </CardContent>

@@ -13,8 +13,6 @@ const TaskList = ({ searchQuery, selectedStatus }: TaskListProps) => {
   const tasks = useSelector((state: Tasks) => state.tasks);
 
   const dispatch = useDispatch();
-  console.log(tasks);
-  console.log(selectedStatus);
 
   const handleDeleteTask = (id: string) => {
     dispatch(deleteTask(id));
