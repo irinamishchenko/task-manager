@@ -12,6 +12,7 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
+import "./TaskItem.css";
 
 interface TaskItemProps {
   task: Task;
@@ -21,7 +22,7 @@ interface TaskItemProps {
 const TaskItem = ({ task, onDelete }: TaskItemProps) => {
   const { id, title, description, status, category, deadline } = task;
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [editedStatus, setEditedStatus] = useState<string>(status);
+  const [editedStatus, setEditedStatus] = useState<TaskStatus>(status);
 
   const dispatch = useDispatch();
 
@@ -29,47 +30,25 @@ const TaskItem = ({ task, onDelete }: TaskItemProps) => {
     setIsModalOpen(true);
   };
 
-  const handleStatusChange = (event: SelectChangeEvent<string>) => {
-    setEditedStatus(event.target.value);
+  const handleStatusChange = (event: SelectChangeEvent<TaskStatus>) => {
+    setEditedStatus(event.target.value as TaskStatus);
 
-    function assertTaskStatus(value: string): value is TaskStatus {
-      console.log(Object.values(TaskStatus).includes(value as TaskStatus));
-      return Object.values(TaskStatus).includes(value as TaskStatus);
-    }
-
-    if (assertTaskStatus(editedStatus)) {
-      const newTask: Task = {
-        id,
-        title,
-        description,
-        status: editedStatus,
-        category,
-        deadline,
-      };
-      dispatch(editTask(newTask));
-    }
-  };
-
-  const cardStyle = {
-    background: "#f0f0f0",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    const newTask: Task = {
+      id,
+      title,
+      description,
+      status: event.target.value as TaskStatus,
+      category,
+      deadline,
+    };
+    dispatch(editTask(newTask));
   };
 
   return (
     <>
-      <Card style={cardStyle}>
-        <CardContent
-          sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              //   marginBottom: "10px",
-            }}
-          >
+      <Card className="task-card">
+        <CardContent className="task-card-content">
+          <div className="task-card-buttons">
             <Button variant="outlined" onClick={openModal}>
               Edit
             </Button>
@@ -81,16 +60,16 @@ const TaskItem = ({ task, onDelete }: TaskItemProps) => {
             {title}
           </Typography>
           <Typography
+            className="task-card-description"
             variant="body2"
             component="p"
-            sx={{ height: "60px", overflowY: "auto" }}
           >
             {description}
           </Typography>
           <Select
-            value={editedStatus}
+            className="task-card-status"
+            value={status}
             onChange={handleStatusChange}
-            sx={{ height: "35px" }}
           >
             <MenuItem value={TaskStatus.NOT_STARTED}>
               {TaskStatus.NOT_STARTED}

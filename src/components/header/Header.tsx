@@ -1,3 +1,4 @@
+import { TaskStatus } from "../../interfaces/tasksInterfaces";
 import {
   Button,
   TextField,
@@ -40,9 +41,15 @@ const Header = ({
         <TextField value={searchQuery} onChange={handleSearchQuery} />
         <Select value={selectedStatus} onChange={handleSelectStatus}>
           <MenuItem value="All">All</MenuItem>
-          <MenuItem value="Not Started">Not Started</MenuItem>
-          <MenuItem value="In Progress">In Progress</MenuItem>
-          <MenuItem value="Completed">Completed</MenuItem>
+          <MenuItem value={TaskStatus.NOT_STARTED}>
+            {TaskStatus.NOT_STARTED}
+          </MenuItem>
+          <MenuItem value={TaskStatus.IN_PROGRESS}>
+            {TaskStatus.IN_PROGRESS}
+          </MenuItem>
+          <MenuItem value={TaskStatus.COMPLETED}>
+            {TaskStatus.COMPLETED}
+          </MenuItem>
         </Select>
       </div>
     </header>

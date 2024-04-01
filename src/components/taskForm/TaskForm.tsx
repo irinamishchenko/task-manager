@@ -75,12 +75,6 @@ const TaskForm = ({ toggleModal, taskToEdit }: TaskFormProps) => {
             fullWidth
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            InputLabelProps={{
-              style: { color: "#000" },
-            }}
-            InputProps={{
-              style: { color: "#000" },
-            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -92,22 +86,15 @@ const TaskForm = ({ toggleModal, taskToEdit }: TaskFormProps) => {
             rows={4}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            InputLabelProps={{
-              style: { color: "#000" },
-            }}
-            InputProps={{
-              style: { color: "#000" },
-            }}
           />
         </Grid>
         <Grid item xs={6}>
           <FormControl variant="outlined" fullWidth>
-            <InputLabel style={{ color: "#000" }}>Status</InputLabel>
+            <InputLabel>Status</InputLabel>
             <Select
               value={status}
               onChange={(e) => setStatus(e.target.value as TaskStatus)}
               label="Status"
-              style={{ color: "#000" }}
             >
               <MenuItem value={TaskStatus.NOT_STARTED}>Not Started</MenuItem>
               <MenuItem value={TaskStatus.IN_PROGRESS}>In Progress</MenuItem>
@@ -117,12 +104,11 @@ const TaskForm = ({ toggleModal, taskToEdit }: TaskFormProps) => {
         </Grid>
         <Grid item xs={6}>
           <FormControl variant="outlined" fullWidth>
-            <InputLabel style={{ color: "#000" }}>Category</InputLabel>
+            <InputLabel>Category</InputLabel>
             <Select
               value={category}
               onChange={(e) => setCategory(e.target.value as TaskCategory)}
               label="Category"
-              style={{ color: "#000" }}
             >
               <MenuItem value={TaskCategory.HOME}>Home</MenuItem>
               <MenuItem value={TaskCategory.WORK}>Work</MenuItem>
@@ -139,12 +125,6 @@ const TaskForm = ({ toggleModal, taskToEdit }: TaskFormProps) => {
             fullWidth
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
-            InputLabelProps={{
-              style: { color: "#000" },
-            }}
-            InputProps={{
-              style: { color: "#000" },
-            }}
           />
         </Grid>
         <Grid item xs={12}>

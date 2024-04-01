@@ -5,3 +5,10 @@ form {
   padding: 50px;
   border-radius: 10px;
 }
+
+form label,
+form input,
+form select,
+form textarea {
+  color: #000;
+}

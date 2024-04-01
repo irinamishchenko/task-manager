@@ -5,8 +5,6 @@ const initialState: Tasks = {
   tasks: JSON.parse(localStorage.getItem("state") || "[]"),
 };
 
-console.log(initialState);
-
 const taskReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case ADD_TASK:
