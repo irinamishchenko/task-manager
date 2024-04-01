@@ -17,6 +17,7 @@ import {
   Button,
   Grid,
 } from "@mui/material";
+import "./TaskForm.css";
 
 interface TaskFormProps {
   toggleModal: () => void;
@@ -56,7 +57,6 @@ const TaskForm = ({ toggleModal, taskToEdit }: TaskFormProps) => {
     } else {
       dispatch(addTask(newTask));
     }
-    // dispatch(addTask(newTask));
     setTitle("");
     setDescription("");
     setStatus(TaskStatus.NOT_STARTED);
@@ -66,16 +66,7 @@ const TaskForm = ({ toggleModal, taskToEdit }: TaskFormProps) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        width: "600px",
-        border: "1px solid black",
-        backgroundColor: "#fff",
-        padding: "50px",
-        borderRadius: "10px",
-      }}
-    >
+    <form onSubmit={handleSubmit}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField

@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import { Task } from "../../interfaces/tasksInterfaces";
 import { Box } from "@mui/material";
 import TaskForm from "../taskForm/TaskForm";
+import "./Modal.css";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -12,20 +13,7 @@ interface ModalProps {
 
 const Modal = ({ toggleModal, taskToEdit }: ModalProps) => {
   return createPortal(
-    <Box
-      sx={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: " rgba(0, 0, 0, 0.8)",
-        zIndex: 1200,
-      }}
-    >
+    <Box className="modal">
       <TaskForm toggleModal={toggleModal} taskToEdit={taskToEdit} />
     </Box>,
     modalRoot as Element

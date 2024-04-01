@@ -60,12 +60,14 @@ const TaskItem = ({ task, onDelete }: TaskItemProps) => {
   return (
     <>
       <Card style={cardStyle}>
-        <CardContent>
+        <CardContent
+          sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
+        >
           <div
             style={{
               display: "flex",
               justifyContent: "space-between",
-              marginBottom: "10px",
+              //   marginBottom: "10px",
             }}
           >
             <Button variant="outlined" onClick={openModal}>
@@ -78,7 +80,11 @@ const TaskItem = ({ task, onDelete }: TaskItemProps) => {
           <Typography variant="h5" component="h2">
             {title}
           </Typography>
-          <Typography variant="body2" component="p">
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{ height: "60px", overflowY: "auto" }}
+          >
             {description}
           </Typography>
           <Select

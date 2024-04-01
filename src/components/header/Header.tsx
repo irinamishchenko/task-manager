@@ -5,6 +5,7 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
+import "./Header.css";
 
 interface HeaderProps {
   modalHandler: () => void;
@@ -32,7 +33,7 @@ const Header = ({
   return (
     <header>
       <h1>Your Favourite Task Manager</h1>
-      <div style={{ marginBottom: "80px", display: "flex", gap: "20px" }}>
+      <div className="header-toolbar">
         <Button variant="contained" onClick={modalHandler}>
           Add new task
         </Button>

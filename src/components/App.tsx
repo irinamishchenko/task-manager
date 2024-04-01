@@ -34,7 +34,7 @@ function App() {
         selectHandler={handleSelectedStatus}
       />
       {isModalOpen ? <Modal toggleModal={toggleModal} /> : null}
-      {tasks.length > 0 ? (
+      {tasks && tasks.length > 0 ? (
         <TaskList searchQuery={searchQuery} selectedStatus={selectedStatus} />
       ) : null}
     </div>
