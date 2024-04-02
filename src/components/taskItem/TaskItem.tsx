@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { editTask } from "../../actions/editTask";
+import { editTask } from "../../redux/actions/editTask";
 import { Task, TaskStatus } from "../../interfaces/tasksInterfaces";
 import Modal from "../modal/Modal";
 import {

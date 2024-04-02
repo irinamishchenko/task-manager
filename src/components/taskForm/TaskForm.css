@@ -12,3 +12,8 @@ form select,
 form textarea {
   color: #000;
 }
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}

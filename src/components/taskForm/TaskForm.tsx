@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { addTask } from "../../actions/addTask";
-import { editTask } from "../../actions/editTask";
+import { addTask } from "../../redux/actions/addTask";
+import { editTask } from "../../redux/actions/editTask";
 import {
   Task,
   TaskStatus,
@@ -74,6 +74,7 @@ const TaskForm = ({ toggleModal, taskToEdit }: TaskFormProps) => {
             variant="outlined"
             fullWidth
             value={title}
+            required={true}
             onChange={(e) => setTitle(e.target.value)}
           />
         </Grid>
@@ -85,6 +86,7 @@ const TaskForm = ({ toggleModal, taskToEdit }: TaskFormProps) => {
             multiline
             rows={4}
             value={description}
+            required={true}
             onChange={(e) => setDescription(e.target.value)}
           />
         </Grid>
@@ -124,12 +126,16 @@ const TaskForm = ({ toggleModal, taskToEdit }: TaskFormProps) => {
             variant="outlined"
             fullWidth
             value={deadline}
+            required={true}
             onChange={(e) => setDeadline(e.target.value)}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className="form-buttons">
           <Button type="submit" variant="contained" color="primary">
             {taskToEdit ? "Save Changes" : "Add Task"}
+          </Button>
+          <Button variant="contained" color="primary" onClick={toggleModal}>
+            Cancel
           </Button>
         </Grid>
       </Grid>

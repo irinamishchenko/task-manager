@@ -38,7 +38,11 @@ const Header = ({
         <Button variant="contained" onClick={modalHandler}>
           Add new task
         </Button>
-        <TextField value={searchQuery} onChange={handleSearchQuery} />
+        <TextField
+          value={searchQuery}
+          placeholder="Search task"
+          onChange={handleSearchQuery}
+        />
         <Select value={selectedStatus} onChange={handleSelectStatus}>
           <MenuItem value="All">All</MenuItem>
           <MenuItem value={TaskStatus.NOT_STARTED}>

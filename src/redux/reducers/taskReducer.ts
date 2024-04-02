@@ -1,5 +1,5 @@
 import { ADD_TASK, DELETE_TASK, EDIT_TASK } from "../constants/actionTypes";
-import { Tasks, Task } from "../interfaces/tasksInterfaces";
+import { Tasks, Task } from "../../interfaces/tasksInterfaces";
 
 const initialState: Tasks = {
   tasks: JSON.parse(localStorage.getItem("state") || "[]"),

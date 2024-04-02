@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Tasks } from "../../interfaces/tasksInterfaces";
 import TaskItem from "../taskItem/TaskItem";
-import { deleteTask } from "../../actions/deleteTask";
+import { deleteTask } from "../../redux/actions/deleteTask";
 import { Grid } from "@mui/material";
 
 interface TaskListProps {
